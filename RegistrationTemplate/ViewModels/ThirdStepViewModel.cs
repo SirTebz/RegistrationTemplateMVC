@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace RegistrationTemplate.ViewModels
 {
@@ -13,6 +14,7 @@ namespace RegistrationTemplate.ViewModels
         public string? SuggestedEmail { get; set; }
         // Custom Email Input 
         [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+        [Remote(action: "IsEmailAvailable", controller: "RemoteValidation", ErrorMessage = "Email is already in use.")]
         public string? CustomEmail { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace RegistrationTemplate.ViewModels
 {
-    public class NinthViewModel
+    public class NinthStepViewModel
     {
         [Required(ErrorMessage = "You must agree to the terms and privacy policy to proceed.")]
         [Display(Name = "I agree to the Terms and Privacy Policy")]
