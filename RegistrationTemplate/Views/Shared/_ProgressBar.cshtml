@@ -1,0 +1,31 @@
+﻿@{
+    var currentStep = ViewBag.CurrentStep ?? 1;
+    var totalSteps = 9;
+    var steps = new[]
+    {
+        "Name", "DOB & Gender", "Gmail", "Password", "Phone", "OTP", "Recovery", "Review", "Terms"
+    };
+}
+<div class="mb-4">
+    <div class="row text-center mb-2">
+        @for (var i = 0; i < totalSteps; i++)
+        {
+            var stepNum = i + 1;
+            var isActive = stepNum == currentStep;
+            var isCompleted = stepNum < currentStep;
+            <div class="col px-0">
+                <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center" style="width:36px;height:36px; background:@(isCompleted ? "#198754" : isActive ? "#0d6efd" : "#dee2e6"); color:@(isCompleted || isActive ? "#fff" : "#6c757d"); font-weight:600;">
+                    @(isCompleted ? "✓" : stepNum.ToString())
+                </div>
+                <div class="small mt-1" style="white-space:nowrap;">
+                    @steps[i]
+                </div>
+            </div>
+        }
+    </div>
+    <div class="progress" style="height: 6px;">
+        <div class="progress-bar" role="progressbar"
+             style="width:@(((double)currentStep - 1) / (totalSteps - 1) * 100)%;">
+        </div>
+    </div>
+</div>

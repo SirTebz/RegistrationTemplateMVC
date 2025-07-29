@@ -1,0 +1,38 @@
+﻿@model RegistrationTemplate.ViewModels.EighthStepViewModel
+@{
+    ViewData["Title"] = "Step 8: Review Your Account Info";
+    ViewBag.CurrentStep = 8;
+}
+<h2 class="mb-4 text-center">@ViewData["Title"]</h2>
+@await Html.PartialAsync("_ProgressBar")
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white fw-semibold fs-5">
+        Please review your account information
+    </div>
+    <div class="card-body">
+        <form asp-action="EighthStepConfirm" asp-controller="Registration" method="post" novalidate>
+            <dl class="row mb-4">
+                <dt class="col-sm-4 fw-semibold">Full Name:</dt>
+                <dd class="col-sm-8">@Model.FullName</dd>
+                <dt class="col-sm-4 fw-semibold">Gmail Address:</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+                <dt class="col-sm-4 fw-semibold">Phone Number:</dt>
+                <dd class="col-sm-8">@Model.PhoneNumber</dd>
+                <dt class="col-sm-4 fw-semibold">Gender:</dt>
+                <dd class="col-sm-8">@Model.Gender</dd>
+                <dt class="col-sm-4 fw-semibold">Date Of Birth:</dt>
+                <dd class="col-sm-8">@Model.DateOfBirth.ToString("MMMM dd, yyyy")</dd>
+                @if (!string.IsNullOrWhiteSpace(Model.RecoveryEmail))
+                {
+                    <dt class="col-sm-4 fw-semibold">Recovery Email:</dt>
+                    <dd class="col-sm-8">@Model.RecoveryEmail</dd>
+                }
+            </dl>
+            <!-- Back, Next and Skip button Buttons -->
+            <div class="form-group mt-1 text-end">
+                <a asp-action="SeventhStep" asp-controller="Registration" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Confirm and Continue</button>
+            </div>
+        </form>
+    </div>
+</div>
